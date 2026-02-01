@@ -58,6 +58,7 @@ Workflow file is located at .github/workflows/robot-ci.yml.
 
 Test reports are saved as workflow artifacts after each run.
 
+
 Workflow steps:
 
 Checkout code from GitHub.
@@ -69,6 +70,7 @@ Install required dependencies (Robot Framework and RequestsLibrary).
 Run all Robot tests in the tests/ folder.
 
 Upload HTML/XML test reports as artifacts.
+
 
 Notes
 The API used is JSONPlaceholder, which is a public API for testing.
