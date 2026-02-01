@@ -35,6 +35,22 @@ Test reports (HTML, XML, log) will be saved in the results/ folder.
 
 Open results/report.html in a browser to see a full test report.
 
+
+CRUD Testing
+
+The tests cover the following API operations:
+
+Create: Add new posts via POST requests
+
+Read: Retrieve posts via GET requests
+
+Update: Modify existing posts via PUT/PATCH requests
+
+Delete: Remove posts via DELETE requests
+
+Post IDs in the tests are currently hardcoded (e.g., 1) for simplicity.
+
+
 CI/CD
 The project uses GitHub Actions to automatically run tests on every push or pull request to the main branch.
 
