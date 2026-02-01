@@ -4,12 +4,15 @@ This project contains API tests for a sample CRUD (Create, Read, Update, Delete)
 
 ## Project Structure
 
-project1/
-tests/ # Robot test cases
-resources/ # Custom keywords
-data/ # Test data (JSON)
-.github/workflows/ # GitHub Actions workflow
-README.md # This file
+robot-api-cicd-project1/
+```
+├── tests/               # Robot test cases
+├── resources/           # Custom keywords
+├── data/                # Test data (JSON)
+├── .github/
+│   └── workflows/       # GitHub Actions workflow
+└── README.md            # This file
+```
 
 
 ## Requirements
