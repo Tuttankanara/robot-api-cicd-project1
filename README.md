@@ -1,4 +1,4 @@
-# robot-api-cicd-project1
+# Automated CRUD API tests with Robot Framework, integrated with CI/CD workflows for continuous validation
 
 This project contains API tests for a sample CRUD (Create, Read, Update, Delete) workflow using **Robot Framework** and **RequestsLibrary**. It also includes a **CI workflow** using GitHub Actions.
 
