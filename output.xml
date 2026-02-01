@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.14.2 on win32)" generated="2026-01-29T00:23:17.260570" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\deust\projects\API_CICD_Project\tests">
+<suite id="s1-s1" name="Crud Tests" source="C:\Users\deust\projects\API_CICD_Project\tests\crud_tests.robot">
+<kw name="Log Suite Start" owner="keywords" type="SETUP">
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-01-29T00:23:17.438767" level="INFO">Suite Started</msg>
+<arg>Suite Started</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-01-29T00:23:17.438578" elapsed="0.000234"/>
+</kw>
+<status status="PASS" start="2026-01-29T00:23:17.438283" elapsed="0.000588"/>
+</kw>
+<test id="s1-s1-t1" name="Create Book Should Return 200" line="9">
+<kw name="Create Book" owner="keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.439801" level="FAIL">Variable '${BOOKS_ENDPOINT}' not found.</msg>
+<arg>fakerest</arg>
+<arg>${BOOKS_ENDPOINT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="FAIL" start="2026-01-29T00:23:17.439468" elapsed="0.000365">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Post Request" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.439926" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<var>${response}</var>
+<arg>fakerest</arg>
+<arg>/</arg>
+<arg>json=${book_data}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.439909" elapsed="0.000232"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.440216" elapsed="0.000012"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="NOT RUN" start="2026-01-29T00:23:17.440257" elapsed="0.000016"/>
+</return>
+<var>${book}</var>
+<arg>{"id":999, "title":"RobotFramework Guide", "description":"API Testing", "pageCount":100, "excerpt":"Learn API automation", "publishDate":"2026-01-27T00:00:00Z"}</arg>
+<status status="FAIL" start="2026-01-29T00:23:17.439238" elapsed="0.001106">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${book['id']}</arg>
+<arg>999</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.440456" elapsed="0.000012"/>
+</kw>
+<status status="FAIL" start="2026-01-29T00:23:17.438911" elapsed="0.001678">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</test>
+<test id="s1-s1-t2" name="Get Book By ID Should Return Correct Book" line="13">
+<kw name="Get Book By ID" owner="keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.441409" level="FAIL">Variable '${BOOKS_ENDPOINT}' not found.</msg>
+<arg>fakerest</arg>
+<arg>${BOOKS_ENDPOINT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="FAIL" start="2026-01-29T00:23:17.441144" elapsed="0.000286">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.441506" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<var>${response}</var>
+<arg>fakerest</arg>
+<arg>/${book_id}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.441492" elapsed="0.000147"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2026-01-29T00:23:17.441673" elapsed="0.000014"/>
+</return>
+<var>${response}</var>
+<arg>999</arg>
+<status status="FAIL" start="2026-01-29T00:23:17.441011" elapsed="0.000730">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.441835" elapsed="0.000012"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()['title']}</arg>
+<arg>RobotFramework Guide</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.441924" elapsed="0.000011"/>
+</kw>
+<status status="FAIL" start="2026-01-29T00:23:17.440796" elapsed="0.001241">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</test>
+<test id="s1-s1-t3" name="Update Book Should Return 200" line="18">
+<kw name="Update Book" owner="keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.442819" level="FAIL">Variable '${BOOKS_ENDPOINT}' not found.</msg>
+<arg>fakerest</arg>
+<arg>${BOOKS_ENDPOINT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="FAIL" start="2026-01-29T00:23:17.442563" elapsed="0.000277">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Put Request" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.442910" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<var>${response}</var>
+<arg>fakerest</arg>
+<arg>/${book_id}</arg>
+<arg>json=${book_data}</arg>
+<doc>*DEPRECATED* Please use `PUT On Session` instead.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.442898" elapsed="0.000161"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2026-01-29T00:23:17.443316" elapsed="0.000012"/>
+</return>
+<var>${response}</var>
+<arg>999</arg>
+<arg>{"id":999, "title":"Updated Book", "description":"Updated Desc", "pageCount":120, "excerpt":"Updated Excerpt", "publishDate":"2026-01-27T00:00:00Z"}</arg>
+<status status="FAIL" start="2026-01-29T00:23:17.442425" elapsed="0.000958">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.443516" elapsed="0.000016"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()['title']}</arg>
+<arg>Updated Book</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.443619" elapsed="0.000010"/>
+</kw>
+<status status="FAIL" start="2026-01-29T00:23:17.442230" elapsed="0.001499">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</test>
+<test id="s1-s1-t4" name="Delete Book Should Return 200" line="23">
+<kw name="Delete Book" owner="keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.445024" level="FAIL">Variable '${BOOKS_ENDPOINT}' not found.</msg>
+<arg>fakerest</arg>
+<arg>${BOOKS_ENDPOINT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="FAIL" start="2026-01-29T00:23:17.444718" elapsed="0.000328">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Delete Request" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.445121" level="WARN">Keyword 'RequestsLibrary.Delete Request' is deprecated. Please use `DELETE On Session` instead.</msg>
+<var>${response}</var>
+<arg>fakerest</arg>
+<arg>/${book_id}</arg>
+<doc>*DEPRECATED* Please use `DELETE On Session` instead.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.445108" elapsed="0.000158"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2026-01-29T00:23:17.445301" elapsed="0.000009"/>
+</return>
+<var>${response}</var>
+<arg>999</arg>
+<status status="FAIL" start="2026-01-29T00:23:17.444574" elapsed="0.000893">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.445578" elapsed="0.000027"/>
+</kw>
+<status status="FAIL" start="2026-01-29T00:23:17.444330" elapsed="0.001382">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</test>
+<test id="s1-s1-t5" name="Get Invalid Book Should Return 404" line="27">
+<kw name="Get Book By ID" owner="keywords">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.446474" level="FAIL">Variable '${BOOKS_ENDPOINT}' not found.</msg>
+<arg>fakerest</arg>
+<arg>${BOOKS_ENDPOINT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="FAIL" start="2026-01-29T00:23:17.446229" elapsed="0.000383">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2026-01-29T00:23:17.446712" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<var>${response}</var>
+<arg>fakerest</arg>
+<arg>/${book_id}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.446695" elapsed="0.000134"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="NOT RUN" start="2026-01-29T00:23:17.446872" elapsed="0.000011"/>
+</return>
+<var>${response}</var>
+<arg>9999</arg>
+<status status="FAIL" start="2026-01-29T00:23:17.446099" elapsed="0.000836">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-01-29T00:23:17.447033" elapsed="0.000012"/>
+</kw>
+<status status="FAIL" start="2026-01-29T00:23:17.445905" elapsed="0.001238">Variable '${BOOKS_ENDPOINT}' not found.</status>
+</test>
+<kw name="Log Suite End" owner="keywords" type="TEARDOWN">
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-01-29T00:23:17.447745" level="INFO">Suite Ended</msg>
+<arg>Suite Ended</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-01-29T00:23:17.447601" elapsed="0.000175"/>
+</kw>
+<status status="PASS" start="2026-01-29T00:23:17.447503" elapsed="0.000304"/>
+</kw>
+<status status="FAIL" start="2026-01-29T00:23:17.288032" elapsed="0.159788"/>
+</suite>
+<status status="FAIL" start="2026-01-29T00:23:17.261603" elapsed="0.186612"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="5" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="0" fail="5" skip="0">Tests</stat>
+<stat name="Crud Tests" id="s1-s1" pass="0" fail="5" skip="0">Tests.Crud Tests</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2026-01-29T00:23:17.289016" level="ERROR">Error in file 'C:\Users\deust\projects\API_CICD_Project\tests\crud_tests.robot' on line 2: Resource file '..\resources\variables.robot' does not exist.</msg>
+<msg time="2026-01-29T00:23:17.437457" level="ERROR">Error in file 'C:\Users\deust\projects\API_CICD_Project\resources\keywords.robot' on line 3: Resource file 'variables.robot' does not exist.</msg>
+<msg time="2026-01-29T00:23:17.439926" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2026-01-29T00:23:17.441506" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2026-01-29T00:23:17.442910" level="WARN">Keyword 'RequestsLibrary.Put Request' is deprecated. Please use `PUT On Session` instead.</msg>
+<msg time="2026-01-29T00:23:17.445121" level="WARN">Keyword 'RequestsLibrary.Delete Request' is deprecated. Please use `DELETE On Session` instead.</msg>
+<msg time="2026-01-29T00:23:17.446712" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+</errors>
+</robot>

@@ -1,0 +1,11 @@
+{
+  "new_post": {
+    "title": "Robot Framework Test",
+    "body": "This is a test post created by Robot Framework",
+    "userId": 1
+  },
+  "updated_post": {
+    "title": "Updated Test Post",
+    "body": "This post was updated by Robot Framework"
+  }
+}

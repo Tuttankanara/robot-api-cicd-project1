@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.14.2 on win32)" generated="2026-02-01T19:16:46.843817" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\deust\projects\API_CICD_Project\tests">
+<suite id="s1-s1" name="Crud Tests" source="C:\Users\deust\projects\API_CICD_Project\tests\crud_tests.robot">
+<kw name="Create API Session" owner="api_keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-02-01T19:16:46.951911" level="INFO">Creating Session using : alias=json_api, url=https://jsonplaceholder.typicode.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<arg>json_api</arg>
+<arg>${BASE_URL}</arg>
+<arg>verify=True</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-02-01T19:16:46.951738" elapsed="0.000313"/>
+</kw>
+<status status="PASS" start="2026-02-01T19:16:46.951374" elapsed="0.000746"/>
+</kw>
+<test id="s1-s1-t1" name="Create Post Test" line="8">
+<kw name="Create Post" owner="api_keywords">
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2026-02-01T19:16:47.337552" level="INFO">POST Request : url=https://jsonplaceholder.typicode.com/posts 
+ path_url=/posts 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '104', 'Content-Type': 'application/json'} 
+ body=b'{"title": "Robot Framework Test", "body": "This is a test post created by Robot Framework", "userId": 1}' 
+ </msg>
+<msg time="2026-02-01T19:16:47.337811" level="INFO">POST Response : url=https://jsonplaceholder.typicode.com/posts 
+ status=201, reason=Created 
+ headers={'Date': 'Sun, 01 Feb 2026 17:16:46 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '125', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'access-control-expose-headers': 'Location', 'Cache-Control': 'no-cache', 'etag': 'W/"7d-0E8xTDsM7J03YooQZCkWhcLN8ww"', 'expires': '-1', 'location': 'https://jsonplaceholder.typicode.com/posts/101', 'nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'pragma': 'no-cache', 'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=p%2FAcDM6ingyvfY8uyfssrobFCgakwQJ3kSW0Q%2Bvobmg%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1769966206"}],"max_age":3600}', 'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=p%2FAcDM6ingyvfY8uyfssrobFCgakwQJ3kSW0Q%2Bvobmg%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1769966206"', 'Server': 'cloudflare', 'vary': 'Origin, X-HTTP-Method-Override, Accept-Encoding', 'via': '2.0 heroku-router', 'x-content-type-options': 'nosniff', 'x-powered-by': 'Express', 'x-ratelimit-limit': '1000', 'x-ratelimit-remaining': '999', 'x-ratelimit-reset': '1769966258', 'cf-cache-status': 'DYNAMIC', 'CF-RAY': '9c7319381aca9893-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={
+  "title": "Robot Framework Test",
+  "body": "This is a test post created by Robot Framework",
+  "userId": 1,
+  "id": 101
+} 
+ </msg>
+<msg time="2026-02-01T19:16:47.338052" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>json_api</arg>
+<arg>/posts</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-02-01T19:16:46.952669" elapsed="0.385426"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-02-01T19:16:47.339507" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.338459" elapsed="0.001149"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2026-02-01T19:16:47.339689" elapsed="0.000065"/>
+</return>
+<msg time="2026-02-01T19:16:47.340267" level="INFO">${response} = {'title': 'Robot Framework Test', 'body': 'This is a test post created by Robot Framework', 'userId': 1, 'id': 101}</msg>
+<var>${response}</var>
+<arg>${new_post}</arg>
+<status status="PASS" start="2026-02-01T19:16:46.952483" elapsed="0.387814"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${response}</arg>
+<arg>id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.340681" elapsed="0.000212"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2026-02-01T19:16:47.341459" level="INFO">Post created successfully</msg>
+<arg>Post created successfully</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.341233" elapsed="0.000269"/>
+</kw>
+<status status="PASS" start="2026-02-01T19:16:46.952163" elapsed="0.389642"/>
+</test>
+<test id="s1-s1-t2" name="Read Existing Post Test" line="14">
+<kw name="Get Post" owner="api_keywords">
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-02-01T19:16:47.356632" level="INFO">GET Request : url=https://jsonplaceholder.typicode.com/posts/1 
+ path_url=/posts/1 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-02-01T19:16:47.356782" level="INFO">GET Response : url=https://jsonplaceholder.typicode.com/posts/1 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 01 Feb 2026 17:16:46 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'Cache-Control': 'max-age=43200', 'etag': 'W/"124-yiKdLzqO5gfBrJFrcdJ8Yq0LGnU"', 'expires': '-1', 'nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'pragma': 'no-cache', 'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=ZmUolDBHcpxj61LO7NNgLSCM5KZLG7zu8FsvQbh7TQU%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1758666582"}],"max_age":3600}', 'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=ZmUolDBHcpxj61LO7NNgLSCM5KZLG7zu8FsvQbh7TQU%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1758666582"', 'Server': 'cloudflare', 'vary': 'Origin, Accept-Encoding', 'via': '2.0 heroku-router', 'x-content-type-options': 'nosniff', 'x-powered-by': 'Express', 'x-ratelimit-limit': '1000', 'x-ratelimit-remaining': '999', 'x-ratelimit-reset': '1758666628', 'Age': '14398', 'cf-cache-status': 'HIT', 'Content-Encoding': 'zstd', 'CF-RAY': '9c731938fb469893-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+} 
+ </msg>
+<msg time="2026-02-01T19:16:47.356964" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>json_api</arg>
+<arg>/posts/${post_id}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.343018" elapsed="0.013983"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-02-01T19:16:47.357967" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.357180" elapsed="0.000881"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2026-02-01T19:16:47.358145" elapsed="0.000088"/>
+</return>
+<msg time="2026-02-01T19:16:47.358813" level="INFO">${response} = {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit...</msg>
+<var>${response}</var>
+<arg>1</arg>
+<status status="PASS" start="2026-02-01T19:16:47.342821" elapsed="0.016059"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-02-01T19:16:47.360042" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response['id']}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.359267" elapsed="0.000857"/>
+</kw>
+<status status="PASS" start="2026-02-01T19:16:47.342493" elapsed="0.017943"/>
+</test>
+<test id="s1-s1-t3" name="Update Existing Post Test" line="18">
+<kw name="Update Post" owner="api_keywords">
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2026-02-01T19:16:47.732013" level="INFO">PUT Request : url=https://jsonplaceholder.typicode.com/posts/1 
+ path_url=/posts/1 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '82', 'Content-Type': 'application/json'} 
+ body=b'{"title": "Updated Test Post", "body": "This post was updated by Robot Framework"}' 
+ </msg>
+<msg time="2026-02-01T19:16:47.732294" level="INFO">PUT Response : url=https://jsonplaceholder.typicode.com/posts/1 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 01 Feb 2026 17:16:47 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'Cache-Control': 'no-cache', 'etag': 'W/"63-c/8pa9Kyp98gxW5sRiSeqUDpEOE"', 'expires': '-1', 'nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'pragma': 'no-cache', 'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=3PhlfCpc%2B%2B6PD3%2B2rtCUOhnExh%2BsvhxeJZdUL%2FMcBOE%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1769966207"}],"max_age":3600}', 'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=3PhlfCpc%2B%2B6PD3%2B2rtCUOhnExh%2BsvhxeJZdUL%2FMcBOE%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1769966207"', 'Server': 'cloudflare', 'vary': 'Origin, Accept-Encoding', 'via': '2.0 heroku-router', 'x-content-type-options': 'nosniff', 'x-powered-by': 'Express', 'x-ratelimit-limit': '1000', 'x-ratelimit-remaining': '998', 'x-ratelimit-reset': '1769966258', 'cf-cache-status': 'DYNAMIC', 'Content-Encoding': 'zstd', 'CF-RAY': '9c7319390b659893-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={
+  "title": "Updated Test Post",
+  "body": "This post was updated by Robot Framework",
+  "id": 1
+} 
+ </msg>
+<msg time="2026-02-01T19:16:47.732633" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>json_api</arg>
+<arg>/posts/${post_id}</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.361717" elapsed="0.370987"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-02-01T19:16:47.735019" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.733072" elapsed="0.002137"/>
+</kw>
+<return>
+<value>${response.json()}</value>
+<status status="PASS" start="2026-02-01T19:16:47.735366" elapsed="0.000091"/>
+</return>
+<msg time="2026-02-01T19:16:47.736478" level="INFO">${response} = {'title': 'Updated Test Post', 'body': 'This post was updated by Robot Framework', 'id': 1}</msg>
+<var>${response}</var>
+<arg>1</arg>
+<arg>${updated_post}</arg>
+<status status="PASS" start="2026-02-01T19:16:47.361395" elapsed="0.375148"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response['title']}</arg>
+<arg>${updated_post['title']}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.737288" elapsed="0.001777"/>
+</kw>
+<status status="PASS" start="2026-02-01T19:16:47.360953" elapsed="0.379070"/>
+</test>
+<test id="s1-s1-t4" name="Delete Post Test" line="22">
+<kw name="Delete Post" owner="api_keywords">
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2026-02-01T19:16:47.871873" level="INFO">DELETE Request : url=https://jsonplaceholder.typicode.com/posts/1 
+ path_url=/posts/1 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2026-02-01T19:16:47.872155" level="INFO">DELETE Response : url=https://jsonplaceholder.typicode.com/posts/1 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 01 Feb 2026 17:16:47 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'access-control-allow-credentials': 'true', 'Cache-Control': 'no-cache', 'etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'expires': '-1', 'nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'pragma': 'no-cache', 'report-to': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=3PhlfCpc%2B%2B6PD3%2B2rtCUOhnExh%2BsvhxeJZdUL%2FMcBOE%3D\\u0026sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d\\u0026ts=1769966207"}],"max_age":3600}', 'reporting-endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=3PhlfCpc%2B%2B6PD3%2B2rtCUOhnExh%2BsvhxeJZdUL%2FMcBOE%3D&amp;sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&amp;ts=1769966207"', 'Server': 'cloudflare', 'vary': 'Origin, Accept-Encoding', 'via': '2.0 heroku-router', 'x-content-type-options': 'nosniff', 'x-powered-by': 'Express', 'x-ratelimit-limit': '1000', 'x-ratelimit-remaining': '997', 'x-ratelimit-reset': '1769966258', 'cf-cache-status': 'DYNAMIC', 'Content-Encoding': 'zstd', 'CF-RAY': '9c73193b6d5d9893-HEL', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body={} 
+ </msg>
+<msg time="2026-02-01T19:16:47.872593" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>json_api</arg>
+<arg>/posts/${post_id}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.742116" elapsed="0.130547"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-02-01T19:16:47.874508" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-02-01T19:16:47.872994" elapsed="0.001669"/>
+</kw>
+<arg>1</arg>
+<status status="PASS" start="2026-02-01T19:16:47.741812" elapsed="0.133017"/>
+</kw>
+<status status="PASS" start="2026-02-01T19:16:47.741270" elapsed="0.134622"/>
+</test>
+<status status="PASS" start="2026-02-01T19:16:46.872725" elapsed="1.018500"/>
+</suite>
+<status status="PASS" start="2026-02-01T19:16:46.844973" elapsed="1.047760"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="4" fail="0" skip="0">Tests</stat>
+<stat name="Crud Tests" id="s1-s1" pass="4" fail="0" skip="0">Tests.Crud Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
